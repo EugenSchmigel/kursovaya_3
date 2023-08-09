@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "kursovaya-3"
+version = "0.1.0"
+description = ""
+authors = ["Eugen <eugenschmigel@gmail.com>"]
+readme = "README.md"
+packages = [{include = "kursovaya_3"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
