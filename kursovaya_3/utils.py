@@ -31,7 +31,8 @@ def sort_data(validated_operation):
     sorted_data = sorted(validated_operation, key=lambda operation: operation['date'], reverse=True)
     return sorted_data
 
-last_five_operartions = sort_data(validated_operation[-25:-1])
+operation_count = 5
+last_five_operartions = sort_data(validated_operation[-operation_count-1:-1])
 
 def formated_bill_date(bill_date):
     bill_date_splitted_by_date = bill_date.split('T')
@@ -40,18 +41,29 @@ def formated_bill_date(bill_date):
     return bill_date_formated
 
 def formated_bill_to(bill_to):
-    pass
+    card_info_to = bill_to.split()
+    number = card_info_to[-1]
+    if bill_to.lower().startswith("Счет"):
+        musked_number = f"**{number[-4:]}"
+        return musked_number
+    else:
+        musked_number = f"**{number[-4:]}"
+        card_info_to[-1] = musked_number
+    hidden_bill_info_to = ' '.join(card_info_to)
+    return hidden_bill_info_to
+
+#Счет **9638
 def formated_bill_from(bill_from):
-    card_info = bill_to.split()
-    number = card_info[-1]
+    card_info_from = bill_to.split()
+    number = card_info_from[-1]
     if bill_to.lower().startswith("Счет"):
         musked_number = f"**{number[-4:]}"
         return musked_number
     else:
         musked_number = f"{number[:4]} {number[4:6]}** ****{number[-4:]}"
-        card_info[-1] = musked_number
-    hidden_bill_info = ' '.join(card_info)
-    return hidden_bill_info
+        card_info_from[-1] = musked_number
+    hidden_bill_info_from = ' '.join(card_info_from)
+    return hidden_bill_info_from
 
 
 for operation in last_five_operartions:
@@ -63,6 +75,6 @@ for operation in last_five_operartions:
     bill_currency = operation['operationAmount']['currency']['name']
 
     print(f"""{formated_bill_date(bill_date)} {bill_description}
-    {formated_bill_from(bill_from)} -> {bill_to}
+    {formated_bill_from(bill_from)} -> {formated_bill_to(bill_to)}
 {bill_amount} {bill_currency}""")
 
