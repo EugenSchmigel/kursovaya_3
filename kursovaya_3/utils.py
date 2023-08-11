@@ -24,8 +24,8 @@ def sorted_by_date(data):
 validated_operation = sorted_by_date(data)
 
 def sort_data(validated_operation):
-    sorted_data = sorted(validated_operation, key=lambda x: x['date'], reverse=True)
+    sorted_data = sorted(validated_operation, key=lambda operation: operation['date'], reverse=True)
     return pprint(sorted_data)
 
-sort_data(validated_operation)
+sort_data(validated_operation[-3:-1])
 
