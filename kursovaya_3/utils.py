@@ -46,6 +46,7 @@ def formated_bill_to(bill_to):
     if bill_to.lower().startswith("Счет"):
         musked_number = f"**{number[-4:]}"
         return musked_number
+
     else:
         musked_number = f"**{number[-4:]}"
         card_info_to[-1] = musked_number
@@ -74,7 +75,9 @@ for operation in last_five_operartions:
     bill_amount = operation['operationAmount']['amount']
     bill_currency = operation['operationAmount']['currency']['name']
 
-    print(f"""{formated_bill_date(bill_date)} {bill_description}
-    {formated_bill_from(bill_from)} -> {formated_bill_to(bill_to)}
+    print(f"""
+{formated_bill_date(bill_date)} {bill_description}
+{formated_bill_from(bill_from)} -> {formated_bill_to(bill_to)}
 {bill_amount} {bill_currency}""")
+
 
