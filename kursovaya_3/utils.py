@@ -39,10 +39,19 @@ def formated_bill_date(bill_date):
     bill_date_formated = '.'.join(reversed(splitted_bill_date))
     return bill_date_formated
 
-def formated_bill_from(bill_from):
-    pass
 def formated_bill_to(bill_to):
     pass
+def formated_bill_from(bill_from):
+    card_info = bill_to.split()
+    number = card_info[-1]
+    if bill_to.lower().startswith("Счет"):
+        musked_number = f"**{number[-4:]}"
+        return musked_number
+    else:
+        musked_number = f"{number[:4]} {number[4:6]}** ****{number[-4:]}"
+        card_info[-1] = musked_number
+    hidden_bill_info = ' '.join(card_info)
+    return hidden_bill_info
 
 
 for operation in last_five_operartions:
@@ -54,6 +63,6 @@ for operation in last_five_operartions:
     bill_currency = operation['operationAmount']['currency']['name']
 
     print(f"""{formated_bill_date(bill_date)} {bill_description}
-    {bill_from} {bill_to}
+    {formated_bill_from(bill_from)} -> {bill_to}
 {bill_amount} {bill_currency}""")
 
