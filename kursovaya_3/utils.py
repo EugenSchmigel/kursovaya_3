@@ -33,6 +33,17 @@ def sort_data(validated_operation):
 
 last_five_operartions = sort_data(validated_operation[-25:-1])
 
+def formated_bill_date(bill_date):
+    bill_date_splitted_by_date = bill_date.split('T')
+    splitted_bill_date = bill_date_splitted_by_date[0].split('-')
+    bill_date_formated = '.'.join(reversed(splitted_bill_date))
+    return bill_date_formated
+
+def formated_bill_from(bill_from):
+    pass
+def formated_bill_to(bill_to):
+    pass
+
 
 for operation in last_five_operartions:
     bill_date = operation['date']
@@ -42,11 +53,7 @@ for operation in last_five_operartions:
     bill_amount = operation['operationAmount']['amount']
     bill_currency = operation['operationAmount']['currency']['name']
 
-    bill_date_splitted_by_date = bill_date.split('T')
-    splitted_bill_date = bill_date_splitted_by_date[0].split('-')
-    bill_date_formated = '.'.join(reversed(splitted_bill_date))
-
-    print(f"""{bill_date_formated} {bill_description}
+    print(f"""{formated_bill_date(bill_date)} {bill_description}
     {bill_from} {bill_to}
 {bill_amount} {bill_currency}""")
 
