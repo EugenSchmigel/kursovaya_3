@@ -6,9 +6,6 @@ def read_data_from_JSON():
         return data
 
 
-# data = read_data_from_JSON()
-
-
 def sorted_by_date(data):
     validate_operation = []
     for operation in data:
@@ -28,17 +25,12 @@ def sorted_by_date(data):
             validate_operation.append(operation)
     return validate_operation
 
-
-
-# validated_operation = sorted_by_date(data)
-
-
-
 def formated_bill_date(bill_date):
     bill_date_splitted_by_date = bill_date.split('T')
     splitted_bill_date = bill_date_splitted_by_date[0].split('-')
     bill_date_formated = '.'.join(reversed(splitted_bill_date))
     return bill_date_formated
+
 
 def formated_bill_to(bill_to):
     card_info_to = bill_to.split()
@@ -55,9 +47,9 @@ def formated_bill_to(bill_to):
 
 
 def formated_bill_from(bill_from):
-    card_info_from = bill_to.split()
+    card_info_from = bill_from.split()
     number = card_info_from[-1]
-    if bill_to.lower().startswith("Счет"):
+    if bill_from.lower().startswith("Счет"):
         musked_number = f"**{number[-4:]}"
         return musked_number
     else:
@@ -77,22 +69,24 @@ def last_five_operations(validated_operation):
     last_five_operartions = sort_data(validated_operation[-operation_count-1:-1])
     return last_five_operartions
 
-# last_five_operartions = last_five_operations()
 
+def get_last_formated_operation(last_five_operartions):
+    for operation in last_five_operartions:
+        bill_date = operation['date']
+        bill_description = operation['description']
+        bill_from = operation['from']
+        bill_to = operation['to']
 
-# for operation in last_five_operartions:
-#     bill_date = operation['date']
-#     bill_description = operation['description']
-#     bill_from = operation['from']
-#     bill_to = operation['to']
-#     bill_amount = operation['operationAmount']['amount']
-#     bill_currency = operation['operationAmount']['currency']['name']
-#
-#     print(f"""
-# {formated_bill_date(bill_date)} {bill_description}
-# {formated_bill_from(bill_from)} -> {formated_bill_to(bill_to)}
-# {bill_amount} {bill_currency}""")
+        bill_amount = operation['operationAmount']['amount']
+        bill_currency = operation['operationAmount']['currency']['name']
 
+        bill_date_formated = formated_bill_date(bill_date)
+        bill_to_formated = formated_bill_to(bill_to)
+        bill_from_formated = formated_bill_from(bill_from)
 
+        print(f"""
+    {bill_date_formated} {bill_description}
+    {bill_from_formated} -> {bill_to_formated}
+    {bill_amount} {bill_currency}""")
 
 
