@@ -99,7 +99,7 @@ def sort_data(validated_operation):
 
 def last_five_operations(validated_operation):
     """ display last five operations"""
-    # count of the operations. By default 5 operations visible.
+    # count of the operations. 5 operations visible by default.
     # If you need more the 5 operations then adjust the below variable 'operation_count'
     operation_count = 5
     last_five_operartions = sort_data(validated_operation[-operation_count-1:-1])
