@@ -1,10 +1,13 @@
 import json
-from pprint import pprint
+
+def read_data_from_JSON():
+    with open('operations.json', encoding='utf-8') as operations_file:
+        data = json.load(operations_file)
+        return data
 
 
-with open('operations.json', encoding='utf-8') as operations_file:
+# data = read_data_from_JSON()
 
-    data = json.load(operations_file)
 
 def sorted_by_date(data):
     validate_operation = []
@@ -25,14 +28,11 @@ def sorted_by_date(data):
             validate_operation.append(operation)
     return validate_operation
 
-validated_operation = sorted_by_date(data)
 
-def sort_data(validated_operation):
-    sorted_data = sorted(validated_operation, key=lambda operation: operation['date'], reverse=True)
-    return sorted_data
 
-operation_count = 5
-last_five_operartions = sort_data(validated_operation[-operation_count-1:-1])
+# validated_operation = sorted_by_date(data)
+
+
 
 def formated_bill_date(bill_date):
     bill_date_splitted_by_date = bill_date.split('T')
@@ -53,7 +53,7 @@ def formated_bill_to(bill_to):
     hidden_bill_info_to = ' '.join(card_info_to)
     return hidden_bill_info_to
 
-#Счет **9638
+
 def formated_bill_from(bill_from):
     card_info_from = bill_to.split()
     number = card_info_from[-1]
@@ -67,17 +67,32 @@ def formated_bill_from(bill_from):
     return hidden_bill_info_from
 
 
-for operation in last_five_operartions:
-    bill_date = operation['date']
-    bill_description = operation['description']
-    bill_from = operation['from']
-    bill_to = operation['to']
-    bill_amount = operation['operationAmount']['amount']
-    bill_currency = operation['operationAmount']['currency']['name']
+def sort_data(validated_operation):
+    sorted_data = sorted(validated_operation, key=lambda operation: operation['date'], reverse=True)
+    return sorted_data
 
-    print(f"""
-{formated_bill_date(bill_date)} {bill_description}
-{formated_bill_from(bill_from)} -> {formated_bill_to(bill_to)}
-{bill_amount} {bill_currency}""")
+
+def last_five_operations(validated_operation):
+    operation_count = 5
+    last_five_operartions = sort_data(validated_operation[-operation_count-1:-1])
+    return last_five_operartions
+
+# last_five_operartions = last_five_operations()
+
+
+# for operation in last_five_operartions:
+#     bill_date = operation['date']
+#     bill_description = operation['description']
+#     bill_from = operation['from']
+#     bill_to = operation['to']
+#     bill_amount = operation['operationAmount']['amount']
+#     bill_currency = operation['operationAmount']['currency']['name']
+#
+#     print(f"""
+# {formated_bill_date(bill_date)} {bill_description}
+# {formated_bill_from(bill_from)} -> {formated_bill_to(bill_to)}
+# {bill_amount} {bill_currency}""")
+
+
 
 
