@@ -35,12 +35,12 @@ def formated_bill_date(bill_date):
 def formated_bill_to(bill_to):
     card_info_to = bill_to.split()
     number = card_info_to[-1]
-    if bill_to.lower().startswith("Счет"):
-        musked_number = f"**{number[-4:]}"
+    if bill_to.lower().startswith('счет'):
+        musked_number = f"{card_info_to[0]} **{number[-4:]}"
         return musked_number
 
     else:
-        musked_number = f"**{number[-4:]}"
+        musked_number = f"{number[:4]} {number[4:6]}** ****{number[-4:]}"
         card_info_to[-1] = musked_number
     hidden_bill_info_to = ' '.join(card_info_to)
     return hidden_bill_info_to
@@ -49,8 +49,8 @@ def formated_bill_to(bill_to):
 def formated_bill_from(bill_from):
     card_info_from = bill_from.split()
     number = card_info_from[-1]
-    if bill_from.lower().startswith("Счет"):
-        musked_number = f"**{number[-4:]}"
+    if bill_from.lower().startswith('счет'):
+        musked_number = f"{card_info_from[0]} **{number[-4:]}"
         return musked_number
     else:
         musked_number = f"{number[:4]} {number[4:6]}** ****{number[-4:]}"
