@@ -1,7 +1,7 @@
 The algorithm prepare on the backend data to be displayed in the cosole a list of the last 5 operations in the format:
 
 {date} {description}
-{from} -> {to}
+{from} >>> {to}
 {amount} {currency}
 
 
