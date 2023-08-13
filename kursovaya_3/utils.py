@@ -102,7 +102,7 @@ def last_five_operations(validated_operation):
     # count of the operations. 5 operations visible by default.
     # If you need more the 5 operations then adjust the below variable 'operation_count'
     operation_count = 5
-    last_five_operartions = sort_data(validated_operation[-operation_count-1:-1])
+    last_five_operartions = sort_data(validated_operation[-operation_count:])
     return last_five_operartions
 
 
@@ -118,7 +118,7 @@ def get_last_formated_operation(last_five_operartions):
         bill_amount = operation['operationAmount']['amount']
         bill_currency = operation['operationAmount']['currency']['name']
 
-        # call the format function and save the value to a variable
+        # call the function to format the card info and save the value to a variable
         bill_date_formated = formated_bill_date(bill_date)
         bill_to_formated = formated_bill_to(bill_to)
         bill_from_formated = formated_bill_from(bill_from)
