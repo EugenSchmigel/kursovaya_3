@@ -2,7 +2,7 @@ import json
 
 def read_data_from_JSON():
     """load JSON file content"""
-    with open('operations.json', encoding='utf-8') as operations_file:
+    with open("operations.json", encoding="utf-8") as operations_file:
         # assign the loaded content to the variable "data"
         data = json.load(operations_file)
         return data
@@ -24,7 +24,6 @@ def sorted_by_date(data):
             continue
         elif operation['state'] != 'EXECUTED':
             continue
-        # add the clean data to the variable "validate_operation"
         validate_operation.append(operation)
     return validate_operation
 
