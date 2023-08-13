@@ -14,3 +14,4 @@ last_five_operartions = last_five_operations(validated_operation)
 
 # display formatted five operation
 get_last_formated_operation(last_five_operartions)
+
