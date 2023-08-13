@@ -1,8 +1,8 @@
 The algorithm prepare on the backend data to be displayed in the cosole a list of the last 5 operations in the format:
 
-<date> <description>
-<from where> -> <to>
-<amount> <currency>
+{date} {description}
+{from} -> {to}
+{amount} {currency}
 
 
 For each transaction there is the following data:
