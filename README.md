@@ -1,5 +1,4 @@
 The function displays a list of the last 5 operations in the format:
-
 <date> <description>
 <from where> -> <to>
 <amount> <currency>
